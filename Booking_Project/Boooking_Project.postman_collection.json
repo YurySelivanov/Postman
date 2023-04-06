@@ -1,0 +1,1322 @@
+{
+	"info": {
+		"_postman_id": "1a09f897-0ae8-4cc9-bacb-548a49c7fd8a",
+		"name": "Boooking_Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15608304"
+	},
+	"item": [
+		{
+			"name": "Account and Finance",
+			"item": [
+				{
+					"name": "Gets Balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property balance\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"balance\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of balance is number\", function () {\r",
+									"    pm.expect(resp.balance).to.be.a(\"number\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property currency\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"currency\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of currency is string\", function () {\r",
+									"    pm.expect(resp.currency).to.be.a(\"string\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getBalance",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getBalance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transport and Schedule",
+			"item": [
+				{
+					"name": "Gets transport classes List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property id\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key).to.have.property(\"id\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property name\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key).to.have.property(\"name\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property type\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key).to.have.property(\"type\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property amenities\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key).to.have.property(\"amenities\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If id = 3956 the name = Economy bus and type = bus\", function () {    \r",
+									"    for(let key of resp) {\r",
+									"        if(key.id == 3956) {\r",
+									"            pm.expect(key.name).to.eq(\"Economy bus\")\r",
+									"            pm.expect(key.type).to.eq(\"bus\")  \r",
+									"        }           \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If id = 3957 the name = VIP bus and type = bus\", function () {    \r",
+									"    for(let key of resp) {\r",
+									"        if(key.id == 3957) {\r",
+									"            pm.expect(key.name).to.eq(\"VIP bus\")\r",
+									"            pm.expect(key.type).to.eq(\"bus\")  \r",
+									"        }           \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"If id = 3959 the name = Ferry and type = ferry\", function () {    \r",
+									"    for(let key of resp) {\r",
+									"        if(key.id == 3959) {\r",
+									"            pm.expect(key.name).to.eq(\"Ferry\")\r",
+									"            pm.expect(key.type).to.eq(\"ferry\")  \r",
+									"        }           \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of id is number\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key.id).to.be.a(\"number\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of name is string\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key.name).to.be.a(\"string\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of type is string\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key.type).to.be.a(\"string\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of amenities is array\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key.amenities).to.be.a(\"array\")              \r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getClassesList",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getClassesList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets Stations List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of id is number\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        pm.expect(key.id).to.be.a(\"number\")              \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Types of others are string\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.name).to.be.a(\"string\") \r",
+									"        pm.expect(key.description).to.be.a(\"string\") \r",
+									"        pm.expect(key.type).to.be.a(\"string\") \r",
+									"        pm.expect(key.country).to.be.a(\"string\") \r",
+									"        pm.expect(key.province).to.be.a(\"string\") \r",
+									"        pm.expect(key.lat).to.be.a(\"string\") \r",
+									"        pm.expect(key.lng).to.be.a(\"string\")                     \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check names of stations\", function () {\r",
+									"\r",
+									"    const needNamesStation = [\"Bangkok Khao San\", \"Ayutthaya\", \"Chiang Mai Bus Terminal 1\", \"Phuket Town\",\"Chonburi\", \"Ao Por Pier\", \"Naka Island\",\"Rassada Pier\" ]\r",
+									"\r",
+									"    const responseNamesStation = []\r",
+									"\r",
+									"    for(let key of resp) {\r",
+									"        responseNamesStation.push(key.name)\r",
+									"    }\r",
+									"\r",
+									"    pm.expect(responseNamesStation).to.deep.eq(needNamesStation)\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getStationsList",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getStationsList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets transit pairs list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(resp).not.to.have.property('error')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getTransitList",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getTransitList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets Routes List",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is number\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.class_id).to.be.a(\"number\")                                  \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is string\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.type).to.be.a(\"string\") \r",
+									"        pm.expect(key.class_name).to.be.a(\"string\")                             \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of departures is array including strings\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        if(key.departures) {\r",
+									"            pm.expect(key.departures).to.be.a(\"array\") \r",
+									"            for(let i in key.departures){\r",
+									"                pm.expect(key.departures[i]).to.be.a(\"string\") \r",
+									"            }\r",
+									"        }        \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of route is string\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        if(key.route) {\r",
+									"            for(let i in key.route){\r",
+									"                pm.expect(key.route[i]).to.be.a(\"string\") \r",
+									"            }\r",
+									"        }        \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of price is number\", function () {\r",
+									"    for(let key of resp) {\r",
+									"        if(key.price) {\r",
+									"            for(let i in key.price){\r",
+									"                pm.expect(key.price[i]).to.be.a(\"number\") \r",
+									"            }\r",
+									"        }        \r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getRoutesList",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getRoutesList"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets Schedule",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is number\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.trip_id).to.be.a(\"number\")    \r",
+									"        pm.expect(key.from_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.to_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.duration).to.be.a(\"number\") \r",
+									"        pm.expect(key.class_id).to.be.a(\"number\")    \r",
+									"        pm.expect(key.netprice).to.be.a(\"number\") \r",
+									"        pm.expect(key.recommended_price).to.be.a(\"number\")      \r",
+									"        pm.expect(key.total_seats).to.be.a(\"number\") \r",
+									"        pm.expect(key.available_seats).to.be.a(\"number\")                                   \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is string\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.from_name).to.be.a(\"string\")    \r",
+									"        pm.expect(key.to_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.date).to.be.a(\"string\") \r",
+									"        pm.expect(key.time).to.be.a(\"string\") \r",
+									"        pm.expect(key.departure).to.be.a(\"string\")    \r",
+									"        pm.expect(key.arrival).to.be.a(\"string\") \r",
+									"        pm.expect(key.type).to.be.a(\"string\")      \r",
+									"        pm.expect(key.class_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.currency).to.be.a(\"string\")                                   \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the from_id\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.from_id).to.eql(+pm.environment.get(\"from_id\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the to_id\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.to_id).to.eql(+pm.environment.get(\"to_id\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the date\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.date).to.eql(pm.environment.get(\"date\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getSchedule?from_id={{from_id}}&to_id={{to_id}}&date={{date}}",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getSchedule"
+							],
+							"query": [
+								{
+									"key": "from_id",
+									"value": "{{from_id}}"
+								},
+								{
+									"key": "to_id",
+									"value": "{{to_id}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets Seats Map",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is number\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.trip_id).to.be.a(\"number\")    \r",
+									"        pm.expect(key.from_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.to_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.class_id).to.be.a(\"number\") \r",
+									"        pm.expect(key.duration).to.be.a(\"number\")                                        \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is string\", function () {\r",
+									"     for(let key of resp) {       \r",
+									"        pm.expect(key.route_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.from_name).to.be.a(\"string\")    \r",
+									"        pm.expect(key.to_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.date).to.be.a(\"string\") \r",
+									"        pm.expect(key.time).to.be.a(\"string\") \r",
+									"        pm.expect(key.type).to.be.a(\"string\")    \r",
+									"        pm.expect(key.class_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.departure).to.be.a(\"string\")      \r",
+									"        pm.expect(key.class_name).to.be.a(\"string\") \r",
+									"        pm.expect(key.arrival).to.be.a(\"string\")                                   \r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check number of seats in the rows are correct \", function () {\r",
+									"\r",
+									"    const seats = resp[0].layout[0].layout\r",
+									"    const alphabet = \"ABCDEFGHIJKLMNOPQRSTUVWXYZ\"    \r",
+									"\r",
+									"    for (let i = 0; i < seats.length; i++) {\r",
+									"        for (let j = 0; j < seats[i].length; j++) {\r",
+									"            pm.expect(seats[i][j]).to.eq(`${[i + 1]}${alphabet[j]}`)\r",
+									"        }\r",
+									"    }    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the from_id\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.from_id).to.eql(+pm.environment.get(\"from_id\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the to_id\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.to_id).to.eql(+pm.environment.get(\"to_id\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the date\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.date).to.eql(pm.environment.get(\"date\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the time\", function () {  \r",
+									"    for(let key of resp){  \r",
+									"        pm.expect(key.time).to.eql(pm.environment.get(\"time\"));\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getSeatsMap?from_id={{from_id}}&to_id={{to_id}}&date={{date}}&time={{time}}",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getSeatsMap"
+							],
+							"query": [
+								{
+									"key": "from_id",
+									"value": "{{from_id}}"
+								},
+								{
+									"key": "to_id",
+									"value": "{{to_id}}"
+								},
+								{
+									"key": "date",
+									"value": "{{date}}"
+								},
+								{
+									"key": "time",
+									"value": "{{time}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking management",
+			"item": [
+				{
+					"name": "Gets reserve Seats (=> next confirm)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property booking_id\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"booking_id\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property successful\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"successful\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property expire\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"expire\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property message\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The message has value RESERVED\", function () {    \r",
+									"    pm.expect(resp.message).to.eql('RESERVED');\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"booking_id_for_conform\", resp.booking_id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"from_id\": {{from_id}},\r\n \"to_id\": {{to_id}},\r\n \"date\": \"{{date}}\",\r\n \"time\": \"{{time}}\",\r\n \"email\": \"{{email}}\",\r\n \"phone\": \"{{phone}}\",\r\n \"passengers\": [\r\n     {\"first_name\": \"{{first_name}}\", \"last_name\": \"{{last_name}}\"}\r\n ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qatest.site/api/reserveSeats",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"reserveSeats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking confirmation",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property successful\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"successful\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property message\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The message has value PENDING\", function () {    \r",
+									"    pm.expect(resp.message).to.eql('PENDING');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "booking_id",
+									"value": "{{booking_id_for_conform}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://qatest.site/api/confirmBooking",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"confirmBooking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets reserve Seats (=> next cencel)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property booking_id\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"booking_id\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property successful\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"successful\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property expire\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"expire\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property message\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The message has value RESERVED\", function () {    \r",
+									"    pm.expect(resp.message).to.eql('RESERVED');\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"booking_id_for_cenceled\", resp.booking_id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"from_id\": {{from_id}},\r\n \"to_id\": {{to_id}},\r\n \"date\": \"{{date}}\",\r\n \"time\": \"{{time}}\",\r\n \"email\": \"{{email}}\",\r\n \"phone\": \"{{phone}}\",\r\n \"passengers\": [\r\n     {\"first_name\": \"{{first_name}}\", \"last_name\": \"{{last_name}}\"}\r\n ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://qatest.site/api/reserveSeats",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"reserveSeats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking cancellation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property successful\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"successful\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Have property message\", function () {\r",
+									"    pm.expect(resp).to.have.property(\"message\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The message has value CANCELED\", function () {    \r",
+									"    pm.expect(resp.message).to.eql('CANCELED');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "booking_id",
+									"value": "{{booking_id_for_cenceled}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://qatest.site/api/cancelBooking",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"cancelBooking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Gets Booking details",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let req = pm.request.url.query.toObject();\r",
+									"let resp = pm.response.json().result\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(resp).not.to.have.property('error')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the booking_id\", function () {    \r",
+									"    pm.expect(req.booking_id).to.eql(resp.id);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is string\", function () {         \r",
+									"    pm.expect(resp.id).to.be.a(\"string\") \r",
+									"    pm.expect(resp.status).to.be.a(\"string\") \r",
+									"    pm.expect(resp.route_name).to.be.a(\"string\") \r",
+									"    pm.expect(resp.from_name).to.be.a(\"string\") \r",
+									"    pm.expect(resp.to_name).to.be.a(\"string\") \r",
+									"    pm.expect(resp.class_name).to.be.a(\"string\") \r",
+									"    pm.expect(resp.departure_date).to.be.a(\"string\")\r",
+									"    pm.expect(resp.departure_time).to.be.a(\"string\") \r",
+									"    pm.expect(resp.departure).to.be.a(\"string\") \r",
+									"    pm.expect(resp.arrival).to.be.a(\"string\") \r",
+									"    pm.expect(resp.booking_date).to.be.a(\"string\") \r",
+									"    pm.expect(resp.currency).to.be.a(\"string\") \r",
+									"    pm.expect(resp.email).to.be.a(\"string\") \r",
+									"    pm.expect(resp.phone).to.be.a(\"string\") \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Type of key is number\", function () {         \r",
+									"    pm.expect(resp.route_id).to.be.a(\"number\") \r",
+									"    pm.expect(resp.trip_id).to.be.a(\"number\") \r",
+									"    pm.expect(resp.from_id).to.be.a(\"number\") \r",
+									"    pm.expect(resp.to_id).to.be.a(\"number\") \r",
+									"    pm.expect(resp.class_id).to.be.a(\"number\") \r",
+									"    pm.expect(resp.duration).to.be.a(\"number\") \r",
+									"    pm.expect(resp.seats).to.be.a(\"number\")\r",
+									"    pm.expect(resp.netprice).to.be.a(\"number\") \r",
+									"    pm.expect(resp.recommended_price).to.be.a(\"number\")     \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the booking_id\", function () {    \r",
+									"    pm.expect(req.booking_id).to.eql(resp.id);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the from_id\", function () {     \r",
+									"    pm.expect(resp.from_id).to.eql(+pm.environment.get(\"from_id\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the to_id\", function () {     \r",
+									"    pm.expect(resp.to_id).to.eql(+pm.environment.get(\"to_id\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the departure_date\", function () {     \r",
+									"    pm.expect(resp.departure_date).to.eql(pm.environment.get(\"date\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the departure_time\", function () {     \r",
+									"    pm.expect(resp.departure_time).to.eql(pm.environment.get(\"time\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the email\", function () {     \r",
+									"    pm.expect(resp.email).to.eql(pm.environment.get(\"email\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the phone\", function () {     \r",
+									"    pm.expect(resp.phone).to.eql(pm.environment.get(\"phone\"))\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Chech the passengers full name\", function () {     \r",
+									"    pm.expect(resp.passengers[0].first_name).to.eql(pm.environment.get(\"first_name\"))\r",
+									"    pm.expect(resp.passengers[0].last_name).to.eql(pm.environment.get(\"last_name\"))\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getBookingDetail?booking_id={{booking_id_for_conform}}",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getBookingDetail"
+							],
+							"query": [
+								{
+									"key": "booking_id",
+									"value": "{{booking_id_for_conform}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agent custom booking fields",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"let resp = pm.response.json().result\r",
+									"let allResponse = pm.response.json()\r",
+									"\r",
+									"pm.test(\"There is no ERROR\", function () {  \r",
+									"    pm.expect(allResponse).not.to.have.property('error')\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "key",
+									"type": "string"
+								},
+								{
+									"key": "in",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "3be8b1fcfa2f963cd9480c5848803072",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://qatest.site/api/getFormFields",
+							"protocol": "https",
+							"host": [
+								"qatest",
+								"site"
+							],
+							"path": [
+								"api",
+								"getFormFields"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "variable_key",
+			"value": ""
+		},
+		{
+			"key": "booking_id",
+			"value": ""
+		}
+	]
+}
